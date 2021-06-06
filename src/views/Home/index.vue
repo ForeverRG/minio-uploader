@@ -1,5 +1,5 @@
 <template lang="">
-  <div>
+  <div class="layout">
     <layout></layout>
   </div>
 </template>
@@ -14,4 +14,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.layout {
+  height: 100%;
+}
 </style>

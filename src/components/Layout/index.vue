@@ -1,6 +1,12 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
-    <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+  <a-layout class="layout" id="components-layout-demo-custom-trigger">
+    <!-- 侧边栏开始 -->
+    <a-layout-sider
+      class="layout-sider"
+      v-model="collapsed"
+      :trigger="null"
+      collapsible
+    >
       <div class="logo" />
       <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
         <a-menu-item key="1">
@@ -17,24 +23,33 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
+    <!-- 侧边栏结束 -->
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <!-- 头部开始 -->
+      <a-layout-header
+        class="layout-header"
+        style="background: pink; padding: 0"
+      >
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
       </a-layout-header>
+      <!-- 头部结束 -->
+      <!-- 主体开始 -->
       <a-layout-content
+        id="layout-content"
         :style="{
           margin: '24px 16px',
           padding: '24px',
-          background: '#fff',
+          background: '#ccc',
           minHeight: '280px',
         }"
       >
         Content
       </a-layout-content>
+      <!-- 主体结束 -->
     </a-layout>
   </a-layout>
 </template>
@@ -65,7 +80,7 @@ export default {
 
 #components-layout-demo-custom-trigger .logo {
   height: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(236, 215, 215, 0.2);
   margin: 16px;
 }
 </style>
