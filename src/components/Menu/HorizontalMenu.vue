@@ -2,29 +2,34 @@
   <div class="horizontal-menu">
     <a-menu v-model="current" mode="horizontal">
       <a-menu-item key="mail">
-        <a-icon type="mail" />Navigation One
+        <!-- 上传文件组件 -->
+        <uploader></uploader>
       </a-menu-item>
       <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper"
-          ><a-icon type="setting" />Navigation Three - Submenu</span
+          ><a-icon type="setting" />更多</span
         >
-        <a-menu-item-group title="Item 1">
-          <a-menu-item key="setting:1"> Option 1 </a-menu-item>
-          <a-menu-item key="setting:2"> Option 2 </a-menu-item>
+        <a-menu-item-group title="平台管理">
+          <a-menu-item key="setting:1"> 垃圾清理 </a-menu-item>
+          <a-menu-item key="setting:2"> 上传记录 </a-menu-item>
         </a-menu-item-group>
-        <a-menu-item-group title="Item 2">
-          <a-menu-item key="setting:3"> Option 3 </a-menu-item>
-          <a-menu-item key="setting:4"> Option 4 </a-menu-item>
+        <a-menu-item-group title="常用工具">
+          <a-menu-item key="setting:3"> 记事本 </a-menu-item>
+          <a-menu-item key="setting:4"> 通讯录 </a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
       <a-menu-item key="alipay">
-        <a href="#" rel="noopener noreferrer">Navigation Four - Link</a>
+        <a href="#" rel="noopener noreferrer"
+          ><a-icon type="share-alt" />分享</a
+        >
       </a-menu-item>
     </a-menu>
   </div>
 </template>
 <script>
+import Uploader from "../Uploader/Uploader.vue";
 export default {
+  components: { Uploader },
   data() {
     return {
       current: ["mail"],

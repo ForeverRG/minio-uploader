@@ -24,10 +24,14 @@
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
+
         <!-- 头像 -->
         <avatar></avatar>
         <!-- 头部菜单 -->
         <horizontal-menu></horizontal-menu>
+        <!-- 上传进度 -->
+        <drawer></drawer>
+        
       </a-layout-header>
       <!-- 头部结束 -->
 
@@ -50,12 +54,13 @@
 
 <script>
 import Avatar from "../Avatar/Avatar.vue";
+import Drawer from "../Drawer/Drawer.vue";
 import HorizontalMenu from "../Menu/HorizontalMenu.vue";
 import VerticalMenu from "../Menu/VerticalMenu.vue";
 
 export default {
   name: "Layout",
-  components: { HorizontalMenu, VerticalMenu, Avatar },
+  components: { HorizontalMenu, VerticalMenu, Avatar, Drawer },
   data() {
     return {
       collapsed: false,
