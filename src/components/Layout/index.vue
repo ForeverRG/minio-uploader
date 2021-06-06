@@ -8,35 +8,29 @@
       collapsible
     >
       <div class="logo" />
-      <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-        <a-menu-item key="1">
-          <a-icon type="user" />
-          <span>nav 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="video-camera" />
-          <span>nav 2</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span>nav 3</span>
-        </a-menu-item>
-      </a-menu>
+      <!-- 侧边栏菜单 -->
+      <vertical-menu></vertical-menu>
     </a-layout-sider>
     <!-- 侧边栏结束 -->
+
     <a-layout>
       <!-- 头部开始 -->
       <a-layout-header
         class="layout-header"
-        style="background: pink; padding: 0"
+        style="background: #fff; padding: 0"
       >
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
+        <!-- 头像 -->
+        <avatar></avatar>
+        <!-- 头部菜单 -->
+        <horizontal-menu></horizontal-menu>
       </a-layout-header>
       <!-- 头部结束 -->
+
       <!-- 主体开始 -->
       <a-layout-content
         id="layout-content"
@@ -55,8 +49,13 @@
 </template>
 
 <script>
+import Avatar from "../Avatar/Avatar.vue";
+import HorizontalMenu from "../Menu/HorizontalMenu.vue";
+import VerticalMenu from "../Menu/VerticalMenu.vue";
+
 export default {
   name: "Layout",
+  components: { HorizontalMenu, VerticalMenu, Avatar },
   data() {
     return {
       collapsed: false,
@@ -67,6 +66,7 @@ export default {
 
 <style lang="less" scoped>
 #components-layout-demo-custom-trigger .trigger {
+  float: left;
   font-size: 18px;
   line-height: 64px;
   padding: 0 24px;
