@@ -7,7 +7,16 @@
       :trigger="null"
       collapsible
     >
-      <div class="logo" />
+      <!-- logo -->
+      <div class="logo">
+        <router-link to="/"
+          ><img
+            class="quectel-logo"
+            src="https://atehub.quectel.com:3004/img/logo_white.png"
+            alt=""
+            srcset=""
+        /></router-link>
+      </div>
       <!-- 侧边栏菜单 -->
       <vertical-menu></vertical-menu>
     </a-layout-sider>
@@ -19,6 +28,7 @@
         class="layout-header"
         style="background: #fff; padding: 0"
       >
+        <!-- 折叠器 -->
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
@@ -31,7 +41,6 @@
         <horizontal-menu></horizontal-menu>
         <!-- 上传进度 -->
         <drawer></drawer>
-        
       </a-layout-header>
       <!-- 头部结束 -->
 
@@ -41,11 +50,12 @@
         :style="{
           margin: '24px 16px',
           padding: '24px',
-          background: '#ccc',
-          minHeight: '280px',
+          background: '#fff',
+          minHeight: 'max-content',
         }"
       >
-        Content
+        <!-- 子路由嵌套 -->
+        <router-view />
       </a-layout-content>
       <!-- 主体结束 -->
     </a-layout>
@@ -66,6 +76,7 @@ export default {
       collapsed: false,
     };
   },
+  methods: {},
 };
 </script>
 
@@ -85,7 +96,10 @@ export default {
 
 #components-layout-demo-custom-trigger .logo {
   height: 32px;
-  background: rgba(236, 215, 215, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   margin: 16px;
+  .quectel-logo {
+    width: 100%;
+  }
 }
 </style>

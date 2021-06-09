@@ -3,15 +3,23 @@
     <a-menu v-model="current" mode="horizontal">
       <a-menu-item key="mail">
         <!-- 上传文件组件 -->
-        <uploader></uploader>
+        <!-- <uploader></uploader> -->
+        <my-uploader-btn></my-uploader-btn>
+        <my-uploader></my-uploader>
       </a-menu-item>
       <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper"
           ><a-icon type="setting" />更多</span
         >
         <a-menu-item-group title="平台管理">
-          <a-menu-item key="setting:1"> 垃圾清理 </a-menu-item>
-          <a-menu-item key="setting:2"> 上传记录 </a-menu-item>
+          <a-menu-item key="setting:1">
+            <keep-alive>
+              <router-link to="UploadLog">控制台</router-link>
+            </keep-alive>
+          </a-menu-item>
+          <a-menu-item key="setting:2" @click="clearLogs">
+            垃圾清理
+          </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group title="常用工具">
           <a-menu-item key="setting:3"> 记事本 </a-menu-item>
@@ -27,13 +35,23 @@
   </div>
 </template>
 <script>
+import MyUploader from "../Uploader/MyUploader.vue";
+import MyUploaderBtn from "../Uploader/MyUploaderBtn.vue";
 import Uploader from "../Uploader/Uploader.vue";
+
+import { EventBus } from "../../EventBus.js";
+
 export default {
-  components: { Uploader },
+  components: { Uploader, MyUploader, MyUploaderBtn },
   data() {
     return {
       current: ["mail"],
     };
+  },
+  methods: {
+    clearLogs() {
+      EventBus.$emit("clearLogsSignal");
+    },
   },
 };
 </script>
