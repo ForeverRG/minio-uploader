@@ -1,6 +1,6 @@
 import { request } from "./request";
 
-const bucketName = "cain-test"
+const bucketName = "cain-test"  // 桶名
 
 // get请求方式
 export function getFiles(params) {

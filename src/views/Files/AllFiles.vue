@@ -6,8 +6,7 @@
   </div>
 </template>
 <script>
-var baseUrl = "http://10.66.20.15:5000/api/";
-var bucketName = "cain-test";
+import { getFiles } from "../../network/files";
 
 const columns = [
   {
@@ -52,8 +51,7 @@ export default {
   methods: {
     // 获取所有文件
     getAllFiles() {
-      this.$http
-        .get(`${baseUrl}MinioFile/files/${bucketName}`)
+      getFiles()
         .then((res) => {
           this.data = res.data.data;
         })
