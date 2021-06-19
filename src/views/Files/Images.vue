@@ -52,7 +52,7 @@ export default {
     getImages() {
       getFiles({ type: "image" })
         .then((res) => {
-          this.data = res.data.data;
+          this.data = res.data;
         })
         .catch((error) => {
           console.log(error);

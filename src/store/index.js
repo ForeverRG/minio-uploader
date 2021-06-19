@@ -7,8 +7,8 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  allFileList: [],
-  documentList: [],
+  allFileList: [], 
+  documentList: [], 
   imageList: [],
   musicList: [],
   videoList: [],

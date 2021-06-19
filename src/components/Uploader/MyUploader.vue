@@ -66,7 +66,9 @@ import { ACCEPT_CONFIG } from "../../acceptFileType.js";
 import { EventBus } from "../../EventBus.js";
 import SparkMD5 from "spark-md5";
 
-var baseUrl = "http://10.66.20.15:5000/api/";
+import { uploadFiles } from "../../network/files";
+
+var baseUrl = "http://192.168.25.58:5001/api/";
 export default {
   data() {
     return {
@@ -163,14 +165,11 @@ export default {
         this.statusSet(file.id, "merging");
         var self = this;
 
-        this.$http
-          .post(
-            `${baseUrl}MinioFile/Compose`,
-            JSON.stringify({
-              identifier: file.uniqueIdentifier,
-            }),
-            { headers: { "Content-Type": "application/json;charset=UTF-8" } }
-          )
+        uploadFiles(
+          JSON.stringify({
+            identifier: file.uniqueIdentifier,
+          })
+        )
           .then((res) => {
             // console.log(res);
             EventBus.$emit("fileSuccess");
@@ -218,8 +217,9 @@ export default {
 
       fileReader.onload = (e) => {
         spark.append(e.target.result);
-        this.$refs.files[this.$refs.files.length - 1].$el.children[1].children[4].children[1].style.visibility =
-          "hidden";
+        this.$refs.files[
+          this.$refs.files.length - 1
+        ].$el.children[1].children[4].children[1].style.visibility = "hidden";
         if (currentChunk < chunks) {
           currentChunk++;
           loadNext();
@@ -231,7 +231,9 @@ export default {
               "(校验MD5 " + ((currentChunk / chunks) * 100).toFixed(0) + "%)";
           });
         } else {
-          this.$refs.files[this.$refs.files.length - 1].$el.children[1].children[4].children[1].style.visibility =
+          this.$refs.files[
+            this.$refs.files.length - 1
+          ].$el.children[1].children[4].children[1].style.visibility =
             "visible";
           let md5 = spark.end();
           this.computeMD5Success(md5, file);
@@ -320,7 +322,9 @@ export default {
         let statusNode = document.createTextNode(`(${statusMap[status].text})`);
         p.appendChild(statusNode);
         console.log(this.$refs.files[this.$refs.files.length - 1]);
-        this.$refs.files[this.$refs.files.length - 1].$el.children[1].children[3].appendChild(p);
+        this.$refs.files[
+          this.$refs.files.length - 1
+        ].$el.children[1].children[3].appendChild(p);
       });
     },
     statusRemove(id) {

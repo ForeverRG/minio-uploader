@@ -35,9 +35,9 @@
   </div>
 </template>
 <script>
-import MyUploader from "../Uploader/MyUploader.vue";
-import MyUploaderBtn from "../Uploader/MyUploaderBtn.vue";
-import Uploader from "../Uploader/Uploader.vue";
+import MyUploader from "../uploader/MyUploader.vue";
+import MyUploaderBtn from "../uploader/MyUploaderBtn.vue";
+import Uploader from "../uploader/Uploader.vue";
 
 import { EventBus } from "../../EventBus.js";
 

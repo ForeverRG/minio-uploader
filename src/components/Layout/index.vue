@@ -63,10 +63,10 @@
 </template>
 
 <script>
-import Avatar from "../Avatar/Avatar.vue";
-import Drawer from "../Drawer/Drawer.vue";
-import HorizontalMenu from "../Menu/HorizontalMenu.vue";
-import VerticalMenu from "../Menu/VerticalMenu.vue";
+import Avatar from "../avatar/Avatar.vue";
+import Drawer from "../drawer/Drawer.vue";
+import HorizontalMenu from "../menu/HorizontalMenu.vue";
+import VerticalMenu from "../menu/VerticalMenu.vue";
 
 export default {
   name: "Layout",

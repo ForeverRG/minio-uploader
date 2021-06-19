@@ -1,12 +1,12 @@
 <template lang="">
   <div id="allFiles">
-  <a-table :columns="columns" :data-source="data" rowKey="name">
+  <a-table :columns="columns" :data-source="allFileList" rowKey="name">
     <span slot="size" slot-scope="size">{{size | formatSize(size)}}</span>
   </a-table>
   </div>
 </template>
 <script>
-import { getFiles } from "../../network/files";
+import { mapActions,mapGetters } from "vuex";
 
 const columns = [
   {
@@ -40,24 +40,20 @@ export default {
   name: "AllFiles",
   data() {
     return {
-      data: [],
       columns,
     };
   },
   created() {
     this.getAllFiles();
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['allFileList'])
+  },
   methods: {
+    ...mapActions(['getAllFileList']),
     // 获取所有文件
     getAllFiles() {
-      getFiles()
-        .then((res) => {
-          this.data = res.data.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.getAllFileList();
     },
   },
   filters: {

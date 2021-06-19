@@ -8,35 +8,35 @@ const routes = [
     path: '/',
     name: 'Home',
     redirect: 'allFiles',
-    component: () => import('../views/Home/index.vue'),
+    component: () => import('../views/home/index.vue'),
     children: [
       {
         path: 'uploadLog',
-        component: () => import('../views/UploadLog/index.vue')
+        component: () => import('../views/uploadLog/index.vue')
       },
       {
         path: 'allFiles',
-        component:()=>import('../views/Files/AllFiles.vue')
+        component:()=>import('../views/files/AllFiles.vue')
       },
       {
         path: 'documents',
-        component:()=>import('../views/Files/Documents.vue')
+        component:()=>import('../views/files/Documents.vue')
       },
       {
         path: 'images',
-        component:()=>import('../views/Files/Images.vue')
+        component:()=>import('../views/files/Images.vue')
       },
       {
         path: 'music',
-        component:()=>import('../views/Files/Music.vue')
+        component:()=>import('../views/files/Music.vue')
       },
       {
         path: 'videos',
-        component:()=>import('../views/Files/Videos.vue')
+        component:()=>import('../views/files/Videos.vue')
       },
       {
         path: 'other',
-        component:()=>import('../views/Files/Other.vue')
+        component:()=>import('../views/files/Other.vue')
       }
     ]
   }
