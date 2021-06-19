@@ -65,7 +65,7 @@
 import { ACCEPT_CONFIG } from "../../acceptFileType.js";
 import { EventBus } from "../../EventBus.js";
 import SparkMD5 from "spark-md5";
-
+import { mapActions } from "vuex";
 import { uploadFiles } from "../../network/files";
 
 var baseUrl = "http://192.168.25.58:5001/api/";
@@ -121,6 +121,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['getAllFileList']),
     afterVisibleChange(val) {
       // console.log("visible", val);
     },
@@ -174,6 +175,7 @@ export default {
             // console.log(res);
             EventBus.$emit("fileSuccess");
             self.statusRemove(file.id);
+            this.getAllFileList();  // 更新文件列表
           })
           .catch((error) => {
             let dom = document.getElementsByClassName(`myStatus_${file.id}`);
