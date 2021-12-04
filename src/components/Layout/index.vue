@@ -40,7 +40,23 @@
         <!-- 头部菜单 -->
         <horizontal-menu></horizontal-menu>
         <!-- 上传进度 -->
-        <drawer></drawer>
+
+        <a-menu
+          mode="horizontal"
+          style="line-height:63px;"
+          forceSubMenuRender
+          :selectable="false"
+        >
+          <a-sub-menu>
+            <span slot="title" class="upload-submenu-title">上传列表</span>
+            <a-menu-item key="0">
+              <direct-upload-drawer />
+            </a-menu-item>
+            <a-menu-item key="1">
+              <drawer></drawer>
+            </a-menu-item>
+          </a-sub-menu>
+        </a-menu>
       </a-layout-header>
       <!-- 头部结束 -->
 
@@ -64,19 +80,27 @@
 
 <script>
 import Avatar from "../avatar/Avatar.vue";
+import DirectUploadDrawer from "../drawer/DirectUploadDrawer.vue";
 import Drawer from "../drawer/Drawer.vue";
 import HorizontalMenu from "../menu/HorizontalMenu.vue";
 import VerticalMenu from "../menu/VerticalMenu.vue";
 
 export default {
   name: "Layout",
-  components: { HorizontalMenu, VerticalMenu, Avatar, Drawer },
+  components: {
+    HorizontalMenu,
+    VerticalMenu,
+    Avatar,
+    Drawer,
+    DirectUploadDrawer,
+  },
   data() {
     return {
       collapsed: false,
     };
   },
   methods: {},
+  created() {},
 };
 </script>
 

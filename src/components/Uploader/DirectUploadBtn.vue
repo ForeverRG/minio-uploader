@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span @click="upload"><a-icon type="cloud-sync" /> 断点续传 </span>
+    <span @click="directUpload"><a-icon type="upload" /> 直连上传 </span>
   </div>
 </template>
 
@@ -23,9 +23,9 @@ export default {
     });
   },
   methods: {
-    upload() {
+    directUpload() {
       // 打开文件选择框
-      EventBus.$emit("openUploader", {
+      EventBus.$emit("directUpload", {
         id: "1111", // 传入的参数
       });
     },

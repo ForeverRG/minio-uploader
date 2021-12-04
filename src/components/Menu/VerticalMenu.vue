@@ -19,7 +19,11 @@
           }}</router-link>
         </a-menu-item>
       </a-sub-menu>
-      <a-menu-item v-for="menuItem in menuItems" :key="menuItem.key" @click="saveSelectedItemKey">
+      <a-menu-item
+        v-for="menuItem in menuItems"
+        :key="menuItem.key"
+        @click="saveSelectedItemKey"
+      >
         <a-icon :type="menuItem.iconType" />
         <span>{{ menuItem.name }}</span>
       </a-menu-item>
@@ -35,32 +39,32 @@ export default {
         {
           key: "1",
           name: "所有",
-          linkTo: "AllFiles",
+          linkTo: "all-files",
         },
         {
           key: "2",
           name: "文档",
-          linkTo: "Documents",
+          linkTo: "documents",
         },
         {
           key: "3",
           name: "视频",
-          linkTo: "Videos",
+          linkTo: "videos",
         },
         {
           key: "4",
           name: "音乐",
-          linkTo: "Music",
+          linkTo: "music",
         },
         {
           key: "5",
           name: "图片",
-          linkTo: "Images",
+          linkTo: "images",
         },
         {
           key: "6",
           name: "其他",
-          linkTo: "Other",
+          linkTo: "other",
         },
       ],
       menuItems: [

@@ -68,7 +68,7 @@ import SparkMD5 from "spark-md5";
 import { mapActions } from "vuex";
 import { uploadFiles } from "../../network/files";
 
-var baseUrl = "http://192.168.25.58:5001/api/";
+var baseUrl = "http://10.66.20.15:5688/api/";
 export default {
   data() {
     return {
@@ -80,7 +80,7 @@ export default {
         forceChunkSize: true, // 强制每片都小于分片大小
         testChunks: true, //是否开启服务器分片校验
         // 服务器分片校验函数，秒传及断点续传基础
-        checkChunkUploadedByResponse: function (chunk, res) {
+        checkChunkUploadedByResponse: function(chunk, res) {
           res = JSON.parse(res);
           let objMessage = res.data;
           if (objMessage.skipUpload) {
@@ -121,7 +121,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['getAllFileList']),
+    ...mapActions(["getAllFileList"]),
     afterVisibleChange(val) {
       // console.log("visible", val);
     },
@@ -137,9 +137,9 @@ export default {
       EventBus.$emit("fileAdded");
     },
     onFileProgress(rootFile, file, chunk) {
-      let log = `上传中 ${file.name}，chunk：${
-        chunk.startByte / 1024 / 1024
-      } ~ ${chunk.endByte / 1024 / 1024}`;
+      let log = `上传中 ${file.name}，chunk：${chunk.startByte /
+        1024 /
+        1024} ~ ${chunk.endByte / 1024 / 1024}`;
       EventBus.$emit("appendLogsSignal", log);
       // console.log(
       //   `上传中 ${file.name}，chunk：${chunk.startByte / 1024 / 1024} ~ ${
@@ -175,7 +175,7 @@ export default {
             // console.log(res);
             EventBus.$emit("fileSuccess");
             self.statusRemove(file.id);
-            this.getAllFileList();  // 更新文件列表
+            this.getAllFileList(); // 更新文件列表
           })
           .catch((error) => {
             let dom = document.getElementsByClassName(`myStatus_${file.id}`);
@@ -255,7 +255,7 @@ export default {
         }
       };
 
-      fileReader.onerror = function () {
+      fileReader.onerror = function() {
         this.error(`文件${file.name}读取出错，请检查该文件`);
         file.cancel();
       };
@@ -323,7 +323,7 @@ export default {
         p.style.display = "inline";
         let statusNode = document.createTextNode(`(${statusMap[status].text})`);
         p.appendChild(statusNode);
-        console.log(this.$refs.files[this.$refs.files.length - 1]);
+        // console.log(this.$refs.files[this.$refs.files.length - 1]);
         this.$refs.files[
           this.$refs.files.length - 1
         ].$el.children[1].children[3].appendChild(p);

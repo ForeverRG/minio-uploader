@@ -1,7 +1,9 @@
 <template>
   <div>
     <a-card title="控制台" :bordered="false" style="width:100%">
-      <p v-for="(log, index) in logs" :key="index">{{ log }}</p>
+      <p v-for="(log, index) in logs" :key="index" :style="log.style">
+        {{ log.content }}
+      </p>
     </a-card>
   </div>
 </template>
@@ -16,8 +18,17 @@ export default {
     };
   },
   mounted() {
-    EventBus.$on("appendLogsSignal", (logs) => {
-      this.logs.push(logs);
+    EventBus.$on("appendLogsSignal", (log) => {
+      // 判断是否为对象
+      if (Object.prototype.toString.call(log) === "[object Object]") {
+        this.logs.unshift(log);
+      } else {
+        this.logs.unshift({ content: log, style: {} });
+      }
+
+      if (this.logs.length > 50) {
+        this.logs = [];
+      }
     });
   },
   destroyed() {
@@ -26,5 +37,4 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

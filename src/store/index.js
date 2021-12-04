@@ -1,26 +1,27 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import getters from './getters'
-import mutations from './mutations'
-import actions from './actions'
+import Vue from "vue";
+import Vuex from "vuex";
+import getters from "./getters";
+import mutations from "./mutations";
+import actions from "./actions";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const state = {
-  allFileList: [], 
-  documentList: [], 
+  allFileList: [],
+  documentList: [],
   imageList: [],
   musicList: [],
   videoList: [],
-  otherList: []
-}
+  otherList: [],
+  presignedURL: "",
+};
 
 // 创建store对象
 const store = new Vuex.Store({
   state,
   getters,
   mutations,
-  actions
-})
+  actions,
+});
 
-export default store
+export default store;

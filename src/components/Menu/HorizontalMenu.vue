@@ -1,12 +1,21 @@
 <template>
   <div class="horizontal-menu">
-    <a-menu v-model="current" mode="horizontal">
-      <a-menu-item key="mail">
-        <!-- 上传文件组件 -->
-        <!-- <uploader></uploader> -->
-        <my-uploader-btn></my-uploader-btn>
-        <my-uploader></my-uploader>
-      </a-menu-item>
+    <a-menu v-model="current" mode="horizontal" forceSubMenuRender>
+      <a-sub-menu>
+        <span slot="title" class="upload-submenu-title"
+          ><a-icon type="cloud-upload" />上传</span
+        >
+        <a-menu-item key="directupload">
+          <direct-uploader></direct-uploader>
+        </a-menu-item>
+        <a-menu-item key="mail">
+          <!-- 上传文件组件 -->
+          <!-- <uploader></uploader> -->
+          <my-uploader-btn></my-uploader-btn>
+          <my-uploader></my-uploader>
+        </a-menu-item>
+      </a-sub-menu>
+
       <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper"
           ><a-icon type="setting" />更多</span
@@ -35,17 +44,23 @@
   </div>
 </template>
 <script>
-import MyUploader from "../uploader/MyUploader.vue";
-import MyUploaderBtn from "../uploader/MyUploaderBtn.vue";
-import Uploader from "../uploader/Uploader.vue";
-
 import { EventBus } from "../../EventBus.js";
 
+import MyUploader from "../uploader/MyUploader.vue";
+import MyUploaderBtn from "../uploader/MyUploaderBtn.vue";
+import DirectUploadBtn from "../uploader/DirectUploadBtn.vue";
+import DirectUploader from "../uploader/DirectUploader.vue";
+
 export default {
-  components: { Uploader, MyUploader, MyUploaderBtn },
+  components: {
+    MyUploader,
+    MyUploaderBtn,
+    DirectUploadBtn,
+    DirectUploader,
+  },
   data() {
     return {
-      current: ["mail"],
+      current: ["directupload"],
     };
   },
   methods: {
@@ -56,6 +71,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.upload-submenu-title {
+  padding: 0;
+}
 .horizontal-menu {
   float: right;
   height: 100%;

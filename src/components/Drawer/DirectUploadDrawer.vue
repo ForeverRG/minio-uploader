@@ -1,15 +1,11 @@
 <template>
-  <div class="drawer">
-    <!-- <a-button shape="circle" icon="search" @click="showDrawer"> </a-button> -->
-    <a-button
-      type="link"
-      @click="sendShowFileListDrawerSignal"
-      style="color:rgba(0, 0, 0, 0.65)"
-      >断点续传列表</a-button
+  <div class="direct-upload-drawer">
+    <a-button type="link" @click="showDrawer" style="color:rgba(0, 0, 0, 0.65)"
+      >直连上传列表</a-button
     >
     <a-drawer
       width="400"
-      title="上传进度"
+      title="上传文件列表"
       placement="right"
       :closable="false"
       :visible="visible"
@@ -19,9 +15,11 @@
       <!-- 展示文件列表-->
       <div class="show-file-name">
         <a-upload
+          ref="uploadRef"
           style="float: left; width: 100%"
           :file-list="showFileList"
-        ></a-upload>
+        >
+        </a-upload>
       </div>
     </a-drawer>
   </div>
@@ -38,12 +36,12 @@ export default {
   },
   mounted() {
     // 监听上传组件发送的上传文件信号
-    EventBus.$on("sendFileListSignal", (fileList) => {
+    EventBus.$on("directUploadFileListSignal", (fileList) => {
       this.showFileList = fileList;
     });
 
     // 监听上传组件发送的显示drawer信号
-    EventBus.$on("showDrawerSignal", () => {
+    EventBus.$on("showDirectUploadSignal", () => {
       this.showDrawer();
     });
   },
@@ -57,9 +55,9 @@ export default {
     onClose() {
       this.visible = false;
     },
-    sendShowFileListDrawerSignal() {
-      EventBus.$emit("showFileListDrawerSignal");
-    },
+    // sendShowFileListDrawerSignal() {
+    //   EventBus.$emit("showFileListDrawerSignal");
+    // },
   },
   destroyed() {
     // 组件销毁则事件总线绑定事件销毁

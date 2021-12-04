@@ -1,12 +1,19 @@
 <template lang="">
   <div id="allFiles">
-  <a-table :columns="columns" :data-source="allFileList" rowKey="name">
-    <span slot="size" slot-scope="size">{{size | formatSize(size)}}</span>
-  </a-table>
+    <a-table
+      :loading="loading"
+      :columns="columns"
+      :data-source="allFileList"
+      rowKey="name"
+    >
+      <span slot="size" slot-scope="size">{{ size | formatSize(size) }}</span>
+    </a-table>
   </div>
 </template>
 <script>
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+
+import { EventBus } from "../../EventBus.js";
 
 const columns = [
   {
@@ -27,12 +34,17 @@ const columns = [
     key: "size",
     width: 200,
     scopedSlots: { customRender: "size" },
+    sorter: (a, b) => a.size - b.size,
+    sortDirections: ["descend", "ascend"],
   },
   {
     title: "创建日期",
     dataIndex: "lastModifiedDateTime",
     key: "lastModifiedDateTime",
     width: 200,
+    sorter: (a, b) =>
+      new Date(a.lastModifiedDateTime) - new Date(b.lastModifiedDateTime),
+    sortDirections: ["descend", "ascend"],
   },
 ];
 
@@ -41,20 +53,11 @@ export default {
   data() {
     return {
       columns,
+      loading: false,
     };
   },
-  created() {
-    this.getAllFiles();
-  },
   computed: {
-    ...mapGetters(['allFileList'])
-  },
-  methods: {
-    ...mapActions(['getAllFileList']),
-    // 获取所有文件
-    getAllFiles() {
-      this.getAllFileList();
-    },
+    ...mapGetters(["allFileList"]),
   },
   filters: {
     // 格式化文件大小
@@ -64,7 +67,22 @@ export default {
       return `${sizeM} KB`;
     },
   },
+  methods: {
+    ...mapActions(["getAllFileList"]),
+    // 获取所有文件
+    getAllFiles() {
+      this.loading = true;
+      this.getAllFileList().then((res) => {
+        this.loading = false;
+      });
+    },
+  },
+  created() {
+    this.getAllFiles();
+  },
+  mounted() {
+    EventBus.$on("loadDataSignal", () => this.getAllFiles());
+  },
 };
 </script>
-<style>
-</style>
+<style></style>

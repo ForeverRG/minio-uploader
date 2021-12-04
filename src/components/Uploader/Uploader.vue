@@ -122,7 +122,7 @@ export default {
         }
       };
 
-      fileReader.onerror = function () {
+      fileReader.onerror = function() {
         this.error(`文件${file.name}读取出错，请检查该文件`);
         file.cancel();
       };
